@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from django.urls import reverse_lazy
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -89,7 +90,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
+LOGIN_REDIRECT_URL = reverse_lazy("inicio")
 
 LANGUAGE_CODE = 'es-ar'
 
