@@ -20,6 +20,4 @@ nombres_categorias = (
     ('14', 'VIDA SUBMARINA'),
     ('15', 'ECOSISTEMAS TERRESTRES'),
     ('16', 'PAZ, JUSTICIA'),
-    ('17', 'ALIANZAS')
-
-)
+    ('17', 'ALIANZAS'))

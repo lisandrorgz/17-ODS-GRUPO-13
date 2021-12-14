@@ -1,20 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 from django.db.models.fields import *
 from django.db.models.fields.files import ImageField
 from .choices import roles, nombres_categorias
-from datetime import date
 
-class Usuario(models.Model):
-    id = models.AutoField(primary_key=True)
-    nombre_usuario = models.CharField(max_length=30, help_text="Maximo de caracteres permitidos (13)")
-    correo = models.CharField(max_length=150, default="EMAIL")
-    contraseña = models.CharField(max_length=150)
-    rol = models.CharField(max_length=1, choices=roles, blank=True, null=True)
-    on_delete = models.PROTECT
 
-    def __str__(self):
-        return self.nombre_usuario
-
+class BlogUser(AbstractUser):   
     class Meta:
         verbose_name='Usuario'
         verbose_name_plural='Usuarios'
@@ -22,7 +13,7 @@ class Usuario(models.Model):
 
 class Post(models.Model):
     id_post = models.AutoField(primary_key=True)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(BlogUser, on_delete=models.CASCADE)
     titulo_post = models.CharField(max_length=20, help_text="Maximo 20 caracteres por titulo de Post")
     fecha_hora = models.DateTimeField(verbose_name="FECHA,HORA", auto_now_add=True)
 
@@ -46,13 +37,3 @@ class Categoria(models.Model):
         verbose_name='Categoria'
         verbose_name_plural="Categorias"
         db_table='Categoria'
-
-class PosteosHome(models.Model):
-    title = CharField(max_length=100)
-    description = CharField(max_length=250)
-    image = ImageField(upload_to="portfolio/images")
-    url = URLField(blank=True)
-    date = DateField(default=date.today)
-
-    def __str__(self) -> str:
-        return self.title
