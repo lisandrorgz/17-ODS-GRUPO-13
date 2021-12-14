@@ -89,7 +89,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+LOGIN_URL = reverse_lazy("login")
 LOGIN_REDIRECT_URL = reverse_lazy("inicio")
 
 LANGUAGE_CODE = 'es-ar'
@@ -107,7 +107,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"), 
+    os.path.join(BASE_DIR, "static"),
 )
 
 
