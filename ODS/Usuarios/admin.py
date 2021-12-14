@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from.models import Post
+from.models import PosteosHome
+
+
+
+# ver problema con ID de Post
+admin.site.register(Post)
+
+
+
+admin.site.register(PosteosHome)

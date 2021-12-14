@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models.fields import *
+from django.db.models.fields.files import ImageField
 from .choices import roles, nombres_categorias
+from datetime import date
 
 class Usuario(models.Model):
     id = models.AutoField(primary_key=True)
@@ -9,7 +11,7 @@ class Usuario(models.Model):
     contraseña = models.CharField(max_length=150)
     rol = models.CharField(max_length=1, choices=roles, blank=True, null=True)
     on_delete = models.PROTECT
-    
+
     def __str__(self):
         return self.nombre_usuario
 
@@ -26,7 +28,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.titulo_post
-    
+
     class Meta:
         verbose_name='Post'
         verbose_name_plural="Post's"
@@ -39,12 +41,18 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.categoria
-    
+
     class Meta:
         verbose_name='Categoria'
         verbose_name_plural="Categorias"
         db_table='Categoria'
 
+class PosteosHome(models.Model):
+    title = CharField(max_length=100)
+    description = CharField(max_length=250)
+    image = ImageField(upload_to="portfolio/images")
+    url = URLField(blank=True)
+    date = DateField(default=date.today)
 
-
-
+    def __str__(self) -> str:
+        return self.title
