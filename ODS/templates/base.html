@@ -51,8 +51,12 @@
                                 class="sr-only">(current)</span></a>
                         {% endif %}
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'foro' %}">Foro</a>
+                    <li class="nav-item">                       
+                        {% if user.is_superuser %}
+                            <a class="nav-link" href="{% url 'foroadmin' %}">Foro</a>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'foro' %}">Foro</a>
+                        {% endif %}
                     </li>
                 </ul>
             </div>
