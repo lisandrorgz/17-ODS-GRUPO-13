@@ -1,10 +1,14 @@
 from django.shortcuts import render
+from django.views.generic.base import TemplateView
 
-def inicio(request):
-    return render(request, 'inicio.html')
 
-def login(request): 
-    return render(request, 'login.html')
 
-def foro(request):
-    return render(request, 'foro.html')
+class Inicio(TemplateView):
+    template_name = "inicio.html"
+
+class Login(TemplateView):
+    template_name = "login.html"
+
+class Foro(TemplateView):
+    template_name = "foro.html"
+
