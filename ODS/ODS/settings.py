@@ -61,7 +61,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ODS.wsgi.application'
 
-
+"""
+#NO BORRAR - ES PARA PRUEBAS
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        }
+}
+"""
 
 DATABASES = {
     'default': {

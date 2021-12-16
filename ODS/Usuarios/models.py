@@ -16,16 +16,33 @@ class User(AbstractUser):
         verbose_name_plural='Usuarios'
         db_table='Usuario'
 
+class Categoria(models.Model):
+    id_categoria = models.AutoField(primary_key=True)
+    #id_post = models.ForeignKey(Post, on_delete=models.CASCADE )
+    categoria = models.CharField(max_length=2,choices=nombres_categorias)
+
+    def __str__(self):
+        return self.categoria
+
+    class Meta:
+        verbose_name='Categoria'
+        verbose_name_plural="Categorias"
+        db_table='Categoria'
+
+
 class Post(models.Model):
     id_post = models.AutoField(primary_key=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     titulo_post = models.CharField(max_length=20, help_text="Maximo 20 caracteres por titulo de Post")
-    fecha_hora = models.DateTimeField(verbose_name="FECHA,HORA", auto_now_add=True)
+    contenido = models.TextField()
+    fecha_hora = models.DateTimeField(auto_now=True)  #se agrego now para que tome hora y fecha actual
+    fecha_modificacion = models.DateTimeField(auto_now_add=True, blank=True) #se agrego fecha de modificacion del post
+    categoria = models.ForeignKey(Categoria, null=False, blank=False, on_delete=models.CASCADE) #se agrego categoria al post(para poder buscarlos por categoria)
     slug = models.SlugField()
     
 
     def __str__(self):
-        return self.titulo_post
+        return '%s - %s - %s' % (self.titulo_post, self.categoria, self.author)
 
     class Meta:
         verbose_name='Post'
@@ -40,7 +57,8 @@ class Comment(models.Model):
     content = models.TextField()
 
     def __str__(self):
-        return self.user.username
+        return '%s - %s' % (self.post.titulo_post, self.user)
+
 
 class PostView(models.Model):
     
@@ -59,15 +77,3 @@ class Like(models.Model):
     def __str__(self):
         return self.user.username
 
-class Categoria(models.Model):
-    id_categoria = models.AutoField(primary_key=True)
-    id_post = models.ForeignKey(Post, on_delete=models.CASCADE )
-    categoria = models.CharField(max_length=2,choices=nombres_categorias)
-
-    def __str__(self):
-        return self.categoria
-
-    class Meta:
-        verbose_name='Categoria'
-        verbose_name_plural="Categorias"
-        db_table='Categoria'
