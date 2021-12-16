@@ -15,9 +15,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-AUTH_USER_MODEL = 'Usuarios.BlogUser'
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -25,7 +22,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
     'Usuarios'
+
 ]
 
 MIDDLEWARE = [
@@ -106,13 +109,21 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+# MEDIA_URL = '/media/' 
 
-
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
-
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+# STATIC_ROOT = (os.path.join(BASE_DIR, "static_root"),)
+# MEDIA_ROOT = (os.path.join(BASE_DIR, "media_root"),)
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+
+AUTH_USER_MODEL = 'Usuarios.User'
