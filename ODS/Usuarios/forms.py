@@ -1,9 +1,14 @@
 from django import forms
+from .models import *
 
 class PostForm(forms.ModelForm):
 	class Meta:
 		model = Post
-		fields = ['__all__']
+		fields = [
+			'author',
+			'titulo_post',
+			'contenido',
+			'categoria',]
 		labels = {
 			'author': 'Nombre de Usuario',
 			'titulo_post': 'Titulo',
@@ -15,4 +20,4 @@ class PostForm(forms.ModelForm):
 			'titulo_post': forms.TextInput(attrs={'class':'form_control'}),
 			'contenido': forms.TextInput(attrs={'class':'form_control'}),
 			'categoria': forms.CheckboxSelectMultiple(),
-		} 
+		}

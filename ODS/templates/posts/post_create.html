@@ -2,12 +2,23 @@
 {% load static %}
 
 {% block title %} 17ODS BLOG {% endblock %}
-
+{% block css %} 
+    <link href="{% static 'css/post.css' %}" rel="stylesheet">
+ {% endblock %}
 {% block content %}
+    <div class="formulario">
+        <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type='submit'>ENVIAR</button>
+    </form>
+    </div>
+    <!--
     <div class="container">
         {% for object in object_list %}
-            {{object.title}}
+            {{object.titulo_post}}
         {% endfor %}
     </div>
+-->
 {% endblock content %}
     
