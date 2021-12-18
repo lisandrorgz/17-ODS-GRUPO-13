@@ -7,6 +7,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 
+AUTH_USER_MODEL = 'Usuarios.Usuario'
+
 
 SECRET_KEY = 'django-insecure-b%jv9f8!7vv%ai3r^e77efh5hf0x8%(89c9nrwj$u!ex22*_oy'
 
@@ -46,7 +48,7 @@ ROOT_URLCONF = 'ODS.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,7 +78,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': '17ODS',
         'USER': 'postgres',
-        'PASSWORD':'3624',
+        'PASSWORD':'17081850',
         'HOST':'localhost',
         'PORT': '5432'
     }
@@ -106,7 +108,7 @@ LOGIN_REDIRECT_URL = reverse_lazy("inicio")
 
 LANGUAGE_CODE = 'es-ar'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
 USE_I18N = True
 
@@ -133,5 +135,3 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-
-AUTH_USER_MODEL = 'Usuarios.User'

@@ -4,7 +4,7 @@ roles = (
 )
 
 nombres_categorias = (
-    ('1','FIN DE LA POBREZA'),
+    ('1', 'FIN DE LA POBREZA'),
     ('2', 'HAMBRE CERO'),
     ('3', 'SALUD Y BIENESTAR'),
     ('4', 'EDUCADION DE CALIDAD'),
@@ -20,4 +20,5 @@ nombres_categorias = (
     ('14', 'VIDA SUBMARINA'),
     ('15', 'ECOSISTEMAS TERRESTRES'),
     ('16', 'PAZ, JUSTICIA'),
-    ('17', 'ALIANZAS'))
+    ('17', 'ALIANZAS')
+)

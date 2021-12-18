@@ -1,24 +1,12 @@
-{%extends "base.html"%}
+{% extends "base.html"%}
 {% load static %}
 
-{% block title %} 17ODS BLOG {% endblock %}
-{% block css %} 
-    <link href="{% static 'css/post.css' %}" rel="stylesheet">
- {% endblock %}
+{% block css %}
+  {{ block.super }}  
+    <link href="{% static 'css/post.css' %}" type="text/css" rel="stylesheet">  
+{% endblock %}
+
 {% block content %}
-    <div class="formulario">
-        <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type='submit'>ENVIAR</button>
-    </form>
-    </div>
-    <!--
-    <div class="container">
-        {% for object in object_list %}
-            {{object.titulo_post}}
-        {% endfor %}
-    </div>
--->
+    
 {% endblock content %}
     

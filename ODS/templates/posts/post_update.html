@@ -1,8 +1,9 @@
 {%extends "base.html"%}
 {% load static %}
-
-{% block title %} EDITAR POST {% endblock %}
-
+{% block css %}
+  {{ block.super }}  
+    <link href="{% static 'css/post.css' %}" type="text/css" rel="stylesheet">  
+{% endblock %}
 {%block content%}
     <div class="container">
         {% for object in object_list %}

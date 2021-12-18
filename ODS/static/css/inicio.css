@@ -1,4 +1,10 @@
+/* css personalizado */
+.container-base{
+    width: 100vw;
+    height: 100vh;
+}
 
+/* css template */
  :root {
     --blue: #007bff;
     --indigo: #6610f2;

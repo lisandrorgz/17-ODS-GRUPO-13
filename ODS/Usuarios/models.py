@@ -5,7 +5,7 @@ from django.db.models.fields.files import ImageField
 from .choices import roles, nombres_categorias
 
 
-class User(AbstractUser):  
+class Usuario(AbstractUser):  
     pass
 
     def __str__(self):
@@ -19,7 +19,7 @@ class User(AbstractUser):
 class Categoria(models.Model):
     id_categoria = models.AutoField(primary_key=True)
     #id_post = models.ForeignKey(Post, on_delete=models.CASCADE )
-    categoria = models.CharField(max_length=2,choices=nombres_categorias)
+    categoria = models.CharField(max_length=10,choices=nombres_categorias, default='1')
 
     def __str__(self):
         return self.categoria
@@ -32,37 +32,48 @@ class Categoria(models.Model):
 
 class Post(models.Model):
     id_post = models.AutoField(primary_key=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     titulo_post = models.CharField(max_length=20, help_text="Maximo 20 caracteres por titulo de Post")
     contenido = models.TextField()
     fecha_hora = models.DateTimeField(auto_now=True)  #se agrego now para que tome hora y fecha actual
     fecha_modificacion = models.DateTimeField(auto_now_add=True, blank=True) #se agrego fecha de modificacion del post
     categoria = models.ForeignKey(Categoria, null=False, blank=False, on_delete=models.CASCADE) #se agrego categoria al post(para poder buscarlos por categoria)
-    slug = models.SlugField()
+    slug = models.SlugField(max_length=20)
     
 
     def __str__(self):
         return '%s - %s - %s' % (self.titulo_post, self.categoria, self.author)
+
+    def get_absolute_url(self):
+        return reverse("detail", kwargs={
+            'slug': self.slug
+            })
 
     class Meta:
         verbose_name='Post'
         verbose_name_plural="Post's"
         db_table='Post'
 
+    @property
+    def get_comment_count(self):
+        comment_count = self.comment_set.all().count()
+        return self._get_comment_count
+
 class Comment(models.Model):
     
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
 
     def __str__(self):
-        return '%s - %s' % (self.post.titulo_post, self.user)
+        return '%s - %s' % (self.post.titulo_post, self.user.username)
 
+        
 
 class PostView(models.Model):
     
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
     
@@ -71,7 +82,7 @@ class PostView(models.Model):
 
 class Like(models.Model):
     
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
         
     def __str__(self):
