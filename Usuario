@@ -1,0 +1,3 @@
+[main a692c69] trabajando sobre el Registrar y modif de User
+ 10 files changed, 69 insertions(+), 27 deletions(-)
+ create mode 100644 ODS/templates/usuarios/registrar.html
