@@ -1,10 +1,10 @@
-from . import views
-from django.conf import settings
-from django.conf.urls.static import static
-from django.contrib import admin
-from django.contrib.auth import views as auth_views
-from django.contrib.auth.views import logout_then_login
-from django.urls import path, include
+from .                                    import views
+from django.conf                          import settings
+from django.conf.urls.static              import static
+from django.contrib                       import admin
+from django.contrib.auth                  import views as auth_views
+from django.contrib.auth.views            import logout_then_login
+from django.urls                          import path, include
 # from Usuarios.views import (
 #     PostListView, 
 #     PostDetailView, 
