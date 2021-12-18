@@ -18,6 +18,9 @@ class PostCreateView(CreateView):
     template_name = 'posts/post_create.html'
     success_url = reverse_lazy('Usuarios:post_list')
 
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('posts:post_create.html')
+
 class PostUpdateView(UpdateView):
     model = Post 
     template_name = 'posts/post_update.html'
@@ -25,3 +28,12 @@ class PostUpdateView(UpdateView):
 class PostDeleteView(DeleteView):
     model = Post 
     template_name = 'posts/post_delete.html'
+
+class Registrarme(CreateView):
+    model = Usuario
+    form_class = UsuarioForm 
+    template_name = 'Usuarios/registrar.html'
+    success_url = reverse_lazy('Usuarios:post_list')
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy ('post:post_create.html')

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView
-from Usuarios.models import User, Post
+from Usuarios.models import Usuario, Post
 
 
 
@@ -15,7 +15,7 @@ class Foro(TemplateView):
     template_name = "foro.html"
     def get_context_data(self, **kwargs):
         context = super(Foro, self).get_context_data(**kwargs)
-        context["usuarios"] = User.objects.all()
+        context["usuarios"] = Usuario.objects.all()
         return context 
 
 class ForoAdmin(ListView):

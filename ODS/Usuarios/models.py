@@ -5,7 +5,7 @@ from django.db.models.fields.files import ImageField
 from .choices import roles, nombres_categorias
 
 
-class User(AbstractUser):  
+class Usuario(AbstractUser):  
     pass
 
     def __str__(self):
@@ -32,7 +32,7 @@ class Categoria(models.Model):
 
 class Post(models.Model):
     id_post = models.AutoField(primary_key=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     titulo_post = models.CharField(max_length=20, help_text="Maximo 20 caracteres por titulo de Post")
     contenido = models.TextField()
     fecha_hora = models.DateTimeField(auto_now=True)  #se agrego now para que tome hora y fecha actual
@@ -51,7 +51,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
@@ -62,7 +62,7 @@ class Comment(models.Model):
 
 class PostView(models.Model):
     
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
     
@@ -71,7 +71,7 @@ class PostView(models.Model):
 
 class Like(models.Model):
     
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
         
     def __str__(self):

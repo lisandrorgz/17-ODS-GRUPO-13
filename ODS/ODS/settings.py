@@ -134,4 +134,4 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 
-AUTH_USER_MODEL = 'Usuarios.User'
+AUTH_USER_MODEL = 'Usuarios.Usuario'
