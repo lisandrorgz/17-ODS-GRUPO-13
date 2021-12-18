@@ -1,6 +1,11 @@
-{% extends "base/base.html" %}
+{% load static %}
+
 {% block menu %}
-{% endblock menu %}
+
+
+{% endblock menu %} 
+
+
 {% block contenido %}
 	<h1>Ingresa tus datos</h1>
 	<form method="POST">{% csrf_token %}
