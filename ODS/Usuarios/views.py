@@ -34,8 +34,8 @@ class Registrarme(CreateView):
     model = Usuario
     form_class = UsuarioForm 
     template_name = 'usuarios/registrar.html'
-    #success_url = reverse_lazy('Usuarios:post_list')
+    success_url = reverse_lazy('Usuarios:post_list')
 
-    #def get_success_url(self, **kwargs):
-     #   return reverse_lazy ('post:post_create.html')
+    def get_success_url(self, **kwargs):
+       return reverse_lazy ('post:post_create.html')
 
