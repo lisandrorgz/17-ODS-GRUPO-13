@@ -4,7 +4,14 @@
 <!-- Custom styles for this template -->
 {% block css%}
   {{ block.super }}  
-    <link href="{% static 'css/foro.css' %}" type="text/css" rel="stylesheet">  
+    <link href="{% static 'css/foro.css' %}" type="text/css" rel="stylesheet">
+    <li class="nav-item">
+      {% if user.is_authenticated %}
+          <a class="nav-link" href="{% url 'usuarios:create' %}">CREAR POST</a>
+      {% else %}
+          <a class="nav-link" href="{% url 'login' %}">CREAR POST</a>
+      {% endif %}
+  </li>  
     
 
 {% endblock %} 
