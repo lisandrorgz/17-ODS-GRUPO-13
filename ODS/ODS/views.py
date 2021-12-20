@@ -1,9 +1,14 @@
-from django.shortcuts import render
-from django.views.generic.base import TemplateView
-from django.views.generic import ListView
-from Usuarios.models import Usuario, Post
+# from django.contrib.auth.decorators    import login_required
+from django.shortcuts                  import render
+from django.views.generic.base         import TemplateView
+from django.views.generic              import ListView
+from Usuarios.models                   import Usuario, Post
 
-
+# inicio basado en funcion
+# @login_required()
+# def inicio(request):
+#     context = {'17ODS': Usuario.objects.all() }
+#     return render(request, "inicio.html", context)
 
 class Inicio(TemplateView):
     template_name = "inicio.html"

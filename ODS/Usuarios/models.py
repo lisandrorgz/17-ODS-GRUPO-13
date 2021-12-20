@@ -1,8 +1,10 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.db.models.fields import *
-from django.db.models.fields.files import ImageField
-from .choices import roles, nombres_categorias
+from django.db                         import models
+from django.contrib.auth.models        import AbstractUser
+from django.db.models.fields           import *
+from django.db.models.fields.files     import ImageField
+from .choices                          import roles, nombres_categorias
+from django.urls                       import reverse_lazy
+
 
 
 class Usuario(AbstractUser):  
@@ -49,10 +51,8 @@ class Post(models.Model):
         return '%s - %s - %s' % (self.titulo_post, self.categoria, self.author)
 
     def get_absolute_url(self):
-        return reverse("detail", kwargs={
-            'slug': self.slug
-            })
-
+        return reverse_lazy ('details', kwargs={'slug':self})
+        
     class Meta:
         verbose_name='Post'
         verbose_name_plural="Post's"

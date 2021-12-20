@@ -26,6 +26,7 @@ class UsuarioForm(UserCreationForm):
 	username = forms.CharField(label='Nombre de usuario', widget=forms.TextInput(attrs={"class": "form-control", "placeholder":'Ingrese usuario'}))
 	first_name = forms.CharField(label="Nombre", widget=forms.TextInput(attrs={"class": "form-control", "placeholder":'Ingrese nombre'}))
 	last_name = forms.CharField(label="Apellido", widget=forms.TextInput(attrs={"class": "form-control", "placeholder":'Ingrese apellido'}))
+	email = forms.CharField(label="E-mail", widget=forms.TextInput(attrs={"class": "form-control", "placeholder":'Ingrese e-mail'}))
 	# password = forms.CharField(widget=forms.PasswordInput())
 
 	class Meta:
@@ -36,7 +37,7 @@ class UsuarioForm(UserCreationForm):
 	"""
 	def clean_username(self):
 		username = self.cleaned_data["username"]
-		if "123" not in username:
+		if "123" in username:
 			raise ValidationError("El nombre de usuario debe incluir la cadena 123") 
 		return username
 	"""
