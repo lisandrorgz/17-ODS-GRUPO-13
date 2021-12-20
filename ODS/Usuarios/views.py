@@ -5,6 +5,7 @@ from django.views.generic            import ListView, DetailView, CreateView, Up
 from .models                         import *      #Post, PostView, Like, Comment
 from .forms                          import *
 from core.mixins                     import AdminRequiredMixins
+from ODS                             import settings
 
 
 
