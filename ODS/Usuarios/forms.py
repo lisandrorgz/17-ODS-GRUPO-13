@@ -8,21 +8,18 @@ class PostForm(forms.ModelForm):
 	class Meta:
 		model = Post
 		fields = [
-			'author',
 			'titulo_post',
 			'contenido',
 			'categoria',]
 		labels = {
-			'author': 'Nombre de Usuario',
 			'titulo_post': 'Titulo',
 			'contenido': 'Contenido',
 			'categoria': 'Categoria',
 		}
 		widgets = {
-			'author': forms.TextInput(attrs={'class':'form_control'}),
 			'titulo_post': forms.TextInput(attrs={'class':'form_control'}),
-			'contenido': forms.TextInput(attrs={'class':'form_control'}),
-			'categoria': forms.CheckboxSelectMultiple(),
+			'contenido': forms.Textarea(attrs={'class':'form_control', 'rows':5, 'placeholder':'Ingrese contenido del  post.'}),
+			'categoria': forms.Select(),
 		}
 
 class UsuarioForm(UserCreationForm):
@@ -34,10 +31,15 @@ class UsuarioForm(UserCreationForm):
 	class Meta:
 		model = Usuario
 		fields = ['username','first_name', 'last_name', 'email']
-		# labels = {'author': 'Nombre de Usuario', 'titulo_post': 'Titulo','contenido': 'Contenido', 'categoria': 'Categoria'}
+		# labels = {'username': 'Nombre de Usuario', 'titulo_post': 'Titulo','contenido': 'Contenido', 'categoria': 'Categoria'}
 		# widgets = {'author': forms.TextInput(attrs={'class':'form_control'}),'titulo_post': forms.TextInput(attrs={'class':'form_control'}), 'contenido': forms.TextInput(attrs={'class':'form_control'}),'categoria': forms.CheckboxSelectMultiple()}
+	"""
 	def clean_username(self):
 		username = self.cleaned_data["username"]
 		if "123" not in username:
 			raise ValidationError("El nombre de usuario debe incluir la cadena 123") 
 		return username
+	"""
+
+
+#class CommentForm(forms.ModelForm):

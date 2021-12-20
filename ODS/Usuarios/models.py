@@ -16,6 +16,7 @@ class Usuario(AbstractUser):
         verbose_name_plural='Usuarios'
         db_table='Usuario'
 
+"""
 class Categoria(models.Model):
     id_categoria = models.AutoField(primary_key=True)
     #id_post = models.ForeignKey(Post, on_delete=models.CASCADE )
@@ -28,18 +29,21 @@ class Categoria(models.Model):
         verbose_name='Categoria'
         verbose_name_plural="Categorias"
         db_table='Categoria'
-
+"""
 
 class Post(models.Model):
     id_post = models.AutoField(primary_key=True)
-    author = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    titulo_post = models.CharField(max_length=20, help_text="Maximo 20 caracteres por titulo de Post")
+    author = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='posts')
+    titulo_post = models.CharField(max_length=20, help_text="Máximo 20 caracteres.")
     contenido = models.TextField()
     fecha_hora = models.DateTimeField(auto_now=True)  #se agrego now para que tome hora y fecha actual
     fecha_modificacion = models.DateTimeField(auto_now_add=True, blank=True) #se agrego fecha de modificacion del post
-    categoria = models.ForeignKey(Categoria, null=False, blank=False, on_delete=models.CASCADE) #se agrego categoria al post(para poder buscarlos por categoria)
+    categoria = models.CharField(max_length=50, help_text="Seleccione una categoria",choices=nombres_categorias, default='1', null=False, blank=False) #se agrego categoria al post(para poder buscarlos por categoria)
     slug = models.SlugField(max_length=20)
     
+    def categoria_verbose(self):
+        return dict(nombres_categorias)[self.categoria]
+
 
     def __str__(self):
         return '%s - %s - %s' % (self.titulo_post, self.categoria, self.author)

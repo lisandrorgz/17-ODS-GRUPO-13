@@ -2,19 +2,31 @@
 {% load static %}
 {% block css %}
   {{ block.super }}  
-    <link href="{% static 'css/post.css' %}" type="text/css" rel="stylesheet">  
+	<!-- <link href="{% static 'css/post.css' %}" type="text/css" rel="stylesheet">  -->
 {% endblock %}
 {% block content %}
-    <div class="container">
-        {% for object in object_list %}
-        <hr>
-            <p>USUARIO: {{object.author}}</p>
-            <p>TITULO: {{object.titulo_post}}</p>
-            <p>CATEGORIA: {{object.categoria}}</p>
-            <p>FECHA: {{object.fecha_hora}}</p>
-            <p>CONTENIDO: {{object.contenido}}</p>
-        <hr>
-        {% endfor %}
-    </div>
-{% endblock content %}
-    
+	<div class="container">
+		{% for object in object_list %}
+			<hr>
+			<div class="card" style="width: 25rem;">
+				<img src="..." class="card-img-top" alt="...">
+				<div class="card-body">
+					<h4 class="card-title">{{object.titulo_post}}</h4>
+					<h6>----- {{ object.categoria_verbose }}{% if not forloop.last %},{% endif %} -----</h6>
+					<h5>Autor: {{object.author}} - {{object.fecha_hora}}</</h5>
+					<p class="card-text">{{object.contenido}}</p>
+					<a href="#" class="btn btn-primary">VER POST</a>
+				</div>
+			</div>
+			<!-- 
+				<p>USUARIO: {{object.author}}</p>
+				<p>TITULO: {{object.titulo_post}}</p>
+				<p>CATEGORIA: {{object.categoria}}</strong>: {{ object.categoria_verbose }}{%if not forloop.last%},{%endif%}</p>
+				<p>FECHA: {{object.fecha_hora}}</p>
+				<p>CONTENIDO: {{object.contenido}}</p>
+			-->
+			<hr>	
+		{% endfor %}
+	</div>
+{% endblock %}
+	

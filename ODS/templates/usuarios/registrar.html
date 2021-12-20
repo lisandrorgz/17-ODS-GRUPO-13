@@ -1,4 +1,6 @@
+{% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block menu %}
 
@@ -6,9 +8,9 @@
 {% endblock menu %} 
 
 
-{% block contenido %}
+{% block content %}
 	<h1>Ingresa tus datos</h1>
-	<form method="POST">{% csrf_token %}
+	<form method="POST" action="{% url 'usuarios:registrarme' %}">{% csrf_token %}
 		{% include "includes/form_errors.html" %}
 		
 		{% include "includes/forms.html" %}
@@ -20,4 +22,4 @@
 			</div>
 		</div>
 	</form>
-{% endblock contenido %}
+{% endblock %}
