@@ -107,8 +107,25 @@
           semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus
           ac cursus
           commodo.</p>
+
+
+       <div class="col-md-5">
+        <div class="section">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+               {% comment %} <form method="POST" action="{% url 'foro.html'%}">
+                 {%csrf_token%}
+                 <div class="form-group">
+                    {{form}}
+                 </div>
+                </form> {% endcomment %}
+                <button> CUCA </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-5">
 
         {% comment "Comment" %}
         {% comment %} <div class="section"> {% endcomment %}
@@ -142,9 +159,9 @@
             {% comment %} </div> {% endcomment %}
           {% comment %} </div> {% endcomment %}
         {% comment %} </div> {% endcomment %}
-         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+         {% comment %} <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
           height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-          role="img" aria-label="Placeholder: 500x500">
+          role="img" aria-label="Placeholder: 500x500"> {% endcomment %}
           <title>Placeholder</title>
           <rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
         </svg> 
@@ -215,7 +232,8 @@
 
 
 <footer class="container">
-    <p>© INFORMATORIO 2021</p>
+
+    {% comment %} <p>© INFORMATORIO 2021</p> {% endcomment %}
   </footer> 
 
 {% endblock carrousel %}
