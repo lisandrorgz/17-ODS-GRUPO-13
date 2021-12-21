@@ -21,7 +21,7 @@ class PostDetailView(DetailView):
     slugField= 'slug'
     form = CommentForm
 
-    def post (self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         form = CommentForm(request.POST)
         if form.is_valid():
             post = self.get_object()
