@@ -64,7 +64,13 @@
 			<div class="row" style="padding:20px;">
 				<div class="col">
 					<button type="submit" class="btn btn-success">Registrarme</button>
-					<a href="{% url 'inicio' %}" class="btn btn-danger">Cancelar</a>
+					<p class="mt-5 mb-3 text-muted"><a href="{% url 'inicio' %}">Cancelar</a></p>
+					<button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesion</button>
+		{% comment %} <p class="mt-5 mb-3 text-muted"><a href="{% url 'inicio' %}">Volver al inicio</a></p>
+		<p class="mt-5 mb-3 text-muted"><a href="{% url 'usuarios:registrarme' %}">Registrarme</a></p> {% endcomment %}
+
+
+
 				</div>
 			</div>
 		</form>
