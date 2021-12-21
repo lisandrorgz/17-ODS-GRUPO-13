@@ -1,0 +1,17 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <h1>ELIMINAR POST</h1>
+        <form  method="POST">
+            {% csrf_token %}
+            <h2>Seguro que desea eliminar el post {{ object.post_titulo }} ?</h2>
+        
+            <button class="btn btn-danger" type='submit'>Si, Eliminar</button>
+            <a class="btn btn-secondary" href="{% url 'usuarios:detail' object.id_post %}">Cancelar</a>
+        </form>
+              
+    </div>
+{% endblock content %}
+    

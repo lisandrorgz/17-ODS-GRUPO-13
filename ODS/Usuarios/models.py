@@ -39,7 +39,7 @@ class Post(models.Model):
     titulo_post = models.CharField(max_length=20, help_text="Máximo 20 caracteres.")
     contenido = models.TextField()
     fecha_hora = models.DateTimeField(auto_now=True)  #se agrego now para que tome hora y fecha actual
-    fecha_modificacion = models.DateTimeField(auto_now_add=True, blank=True) #se agrego fecha de modificacion del post
+    fecha_modificacion = models.DateTimeField(auto_now_add=True) #se agrego fecha de modificacion del post
     categoria = models.CharField(max_length=50, help_text="Seleccione una categoria",choices=nombres_categorias, default='1', null=False, blank=False) #se agrego categoria al post(para poder buscarlos por categoria)
     slug = models.SlugField(max_length=20)
     
@@ -51,7 +51,7 @@ class Post(models.Model):
         return '%s - %s - %s' % (self.titulo_post, self.categoria, self.author)
 
     def get_absolute_url(self):
-        return reverse_lazy ('details', kwargs={'slug':self})
+        return reverse_lazy ('details', kwargs={'pk':self.pk})
         
     class Meta:
         verbose_name='Post'
