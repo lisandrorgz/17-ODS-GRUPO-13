@@ -95,5 +95,5 @@ class Registrarme(CreateView):
     # success_url = reverse_lazy('usuarios:list')
 
     def get_success_url(self, **kwargs):
-        return reverse_lazy ('inicio')
+        return reverse_lazy('inicio')
 
