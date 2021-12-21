@@ -69,7 +69,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ODS.wsgi.application'
 
-"""
+
 #NO BORRAR - ES PARA PRUEBAS
 DATABASES = {
     'default': {
@@ -90,7 +90,7 @@ DATABASES = {
     }
 }
 
-
+"""
 
 
 AUTH_PASSWORD_VALIDATORS = [
