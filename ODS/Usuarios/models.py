@@ -1,3 +1,4 @@
+from django                            import forms
 from django.db                         import models
 from django.contrib.auth.models        import AbstractUser
 from django.db.models.fields           import *
@@ -63,8 +64,9 @@ class Post(models.Model):
         comment_count = self.comment_set.all().count()
         return self._get_comment_count
 
+
 class Comment(models.Model):
-    
+
     user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -74,16 +76,21 @@ class Comment(models.Model):
         # return self.user.username
         return '%s - %s' % (self.post.titulo_post, self.user.username)
 
-        
-
-class PostView(models.Model):
-    
+class CommentForm(forms.ModelForm):
     user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(auto_now_add=True)
-    
-    def __str__(self):
-        return self.user.username
+    # timestamp = models.DateTimeField(auto_now_add=True)
+    Content = forms.CharField(widget=forms.Textarea(attrs={'class': 'md-textarea from-control','placeholder': 'comment here ...','rows': '4',}))
+    class Meta:
+		# model = Comment
+        fields = ('content', )
+
+class PostView(models.Model):
+        user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+        post = models.ForeignKey(Post, on_delete=models.CASCADE)
+        timestamp = models.DateTimeField(auto_now_add=True)
+        def __str__(self):
+            return self.user.username
 
 class Like(models.Model):
     

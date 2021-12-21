@@ -21,17 +21,8 @@ class PostDetailView(DetailView):
     slugField= 'slug'
     form = CommentForm
 
-    # def post(self, request, *args, **kwargs):
-    #     form = CommentForm(request.POST)
-    #     if form.is_valid():
-    #         post = self.get_object()
-    #         form.instance.user = request.user
-    #         form.instance.post = post
-    #         form.save()
-
-    #         return redirect(reverse('post', kwargs={
-    #             'slug': post.slug
-    #         }))
+    
+    
     # def get_context_data(self, **kwargs):
     #     post_comments = Comment.objects.all().filter(post=self.objects.id)
     #     context = super().get_context_data(**kwargs)
