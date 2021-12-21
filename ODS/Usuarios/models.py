@@ -71,8 +71,8 @@ class Comment(models.Model):
     content = models.TextField()
 
     def __str__(self):
-        return self.user.username
-        # return '%s - %s' % (self.post.titulo_post, self.user.username)
+        # return self.user.username
+        return '%s - %s' % (self.post.titulo_post, self.user.username)
 
         
 

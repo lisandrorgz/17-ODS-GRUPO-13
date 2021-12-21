@@ -19,10 +19,10 @@ class Login(TemplateView):
 class Foro(TemplateView):
     template_name = "foro.html"
     model = Post
-    def get_context_data(self, **kwargs):
-        context = super(Foro, self).get_context_data(**kwargs)
-        context["usuarios"] = Usuario.objects.all()
-        return context 
+    # def get_context_data(self, **kwargs):
+    #     context = super(Post, self).get_context_data(**kwargs)
+    #     context["usuarios"] = Usuario.objects.all()
+    #     return context 
 
 class ForoAdmin(ListView):
     template_name = "admin/foroadmin.html"

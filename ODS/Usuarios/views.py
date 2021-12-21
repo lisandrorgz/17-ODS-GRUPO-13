@@ -21,25 +21,25 @@ class PostDetailView(DetailView):
     slugField= 'slug'
     form = CommentForm
 
-    def post(self, request, *args, **kwargs):
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            post = self.get_object()
-            form.instance.user = request.user
-            form.instance.post = post
-            form.save()
+    # def post(self, request, *args, **kwargs):
+    #     form = CommentForm(request.POST)
+    #     if form.is_valid():
+    #         post = self.get_object()
+    #         form.instance.user = request.user
+    #         form.instance.post = post
+    #         form.save()
 
-            return redirect(reverse('post', kwargs={
-                'slug': post.slug
-            }))
-    def get_context_data(self, **kwargs):
-        post_comments = Comment.objects.all().filter(post=self.objects.id)
-        context = super().get_context_data(**kwargs)
-        context.update ({
-            'form': self.form, 
-            'post_comments': post_comments, 
-        })
-        return context
+    #         return redirect(reverse('post', kwargs={
+    #             'slug': post.slug
+    #         }))
+    # def get_context_data(self, **kwargs):
+    #     post_comments = Comment.objects.all().filter(post=self.objects.id)
+    #     context = super().get_context_data(**kwargs)
+    #     context.update ({
+    #         'form': self.form, 
+    #         'post_comments': post_comments, 
+    #     })
+    #     return context
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):   #AdminRequiredMixins, 
@@ -94,11 +94,6 @@ class Registrarme(CreateView):
 
     success_url = reverse_lazy('usuarios:list')
 
-<<<<<<< HEAD
-    def get_success_url(self, **kwargs):
-        return reverse_lazy('inicio')
-=======
-    #def get_success_url(self, **kwargs):
-        #return reverse_lazy ('post:post_create.html')
->>>>>>> parent of ff72bf1 (registrarse vuelve a inicio)
+    # def get_success_url(self, **kwargs):
+    #     return reverse_lazy('inicio')
 
