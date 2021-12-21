@@ -1,15 +1,30 @@
 {%extends "base.html"%}
 {% load static %}
+
 {% block css %}
   {{ block.super }}  
-    <link href="{% static 'css/post.css' %}" type="text/css" rel="stylesheet">  
+    <!-- <link href="{% static 'css/post.css' %}" type="text/css" rel="stylesheet"> -->
 {% endblock %}
 
 {% block content %}
     <div class="container">
-        {% for object in object_list %}
-            {{object.titulo_post}}
-        {% endfor %}
+        <div class="card" >
+                <div class="card-body">
+                    <div class="date-name">
+                        <h4 class="card-title">{{object.titulo_post}}</h4>
+                        <h5>Publicado por @{{object.author}}</h5>
+                        <h5>{{object.fecha_hora}}</</h5>
+                    </div>
+                    
+                    <h6>Categoria: {{ object.categoria_verbose }}{% if not forloop.last %}{% endif %} </h6>
+                    <p class="card-text">{{object.contenido}}</p>
+
+                    {% if object.author == user %}
+                        <a href="{% url 'usuarios:update' object.id_post %}" class="btn btn-secondary">EDITAR</a>
+                        <a href="{% url 'usuarios:delete' object.id_post %}" class="btn btn-danger">ELIMINAR</a>
+                    {% endif %}
+                </div>
+            </div>
     </div>
 {% endblock content %}
     
