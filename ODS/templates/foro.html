@@ -109,6 +109,39 @@
           commodo.</p>
       </div>
       <div class="col-md-5">
+
+        {% comment "Comment" %}{% endcomment %}
+        <div class="section">
+          <div class="container"> 
+            <h2>Comments(0)<h2>
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                {% comment "Display de Comment" %}{% endcomment %}
+                <div class="media-list">
+                    {% for comment in post_comments%}
+                  <div>
+                    <img class="avatar avatar-sm mr-4" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+
+                    <div class="media-body">
+                      <div class="small-1">
+                        <b> {{comment.user}}</b>
+                        <time class="ml-4 opaciy-70 small-3"> {{comment.date}}</time>
+                      </div>
+                      <p>{{comment.content}}</p>
+                    </div>
+                    {%endfor%}
+                  </div>
+                  <form method="POST" action="{% url 'post' slug=post.slug %}">
+                    {%csrf_token%}
+                    <div class="form-group">
+                       {{form}}
+                    </div>
+                    <button class="btn btn-primary btn-block" type='submit' >comment</button>
+                  </form>
+              </div>
+            </div>
+          </div>
+        </div>
         {% comment %} <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
           height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
           role="img" aria-label="Placeholder: 500x500">
@@ -166,9 +199,7 @@
 
   </div>
 
-  {% comment %} <footer class="container">
-    <p>© INFORMATORIO 2021</p>
-  </footer> {% endcomment %}
+  
 </main>
 <script src="{% static 'js/inicio.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -181,4 +212,10 @@
   integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
   </script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+<footer class="container">
+    <p>© INFORMATORIO 2021</p>
+  </footer> 
+
 {% endblock carrousel %}
