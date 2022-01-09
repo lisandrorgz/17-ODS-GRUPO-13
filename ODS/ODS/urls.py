@@ -21,7 +21,7 @@ urlpatterns = [
     path('', views.Inicio.as_view(), name="inicio"),
     path('login/', auth_views.LoginView.as_view(template_name="login.html"), name="login"),
 	path('logout/', auth_views.logout_then_login, name = "logout"),
-    path('foro/', views.Foro.as_view(), name="foro" ),
+    path('foro/', views.ForoUsuario.as_view(), name="foro" ),
     path('foroadmin/', views.ForoAdmin.as_view(), name="foroadmin")
     # path('', PostListView.as_view(), name='list'),
     # path('<slug>/', PostDetailView.as_view(), name='detail'),

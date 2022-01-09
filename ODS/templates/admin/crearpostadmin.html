@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block header %}
+{% endblock header %}
+{% block contenido %}
+<form class="form-label" method="POST"> {% csrf_token %}
+    {% include "includes/form_errors.html" %}
+    {{form.as_p}}
+</form>
+
+{% endblock contentido %}
